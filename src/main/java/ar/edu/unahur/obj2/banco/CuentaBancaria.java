@@ -32,8 +32,7 @@ public class CuentaBancaria {
     public void habilitarDeshabilitar() {
         if (bloqueada = true) {
             this.bloqueada = false;
-        }
-        else {
+        } else {
             this.bloqueada = true;
         }
     }
@@ -42,7 +41,7 @@ public class CuentaBancaria {
         if (monto <= 0) {
             throw new MontoInvalidoException("El monto debe que sea mayor a 0");
         }
-        if(bloqueada) {
+        if (bloqueada) {
             throw new CuentaBloqueadaException("La cuenta esta bloqueada");
         }
         this.saldo += monto;
@@ -56,14 +55,14 @@ public class CuentaBancaria {
         if (this.saldo - monto < Descubierto_Permitido) {
             throw new SaldoInsuficienteException("El el saldo del usuario debe ser mayor que el saldo");
         }
-        if(bloqueada) {
+        if (bloqueada) {
             throw new CuentaBloqueadaException("La cuenta esta bloqueada");
         }
         this.saldo -= monto;
         notificarMovimiento("RETIRO", monto);
     }
 
-    //Observer
+    // Observer
     public void registrarObservador(ObservadorCuenta observador) {
         this.observadores.add(observador);
     }

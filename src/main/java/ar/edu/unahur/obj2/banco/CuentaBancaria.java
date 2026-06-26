@@ -15,9 +15,9 @@ public class CuentaBancaria {
     private static final Double Descubierto_Permitido = -50_000.0;
     private Boolean bloqueada = false;
 
-    public CuentaBancaria(Integer numero) {
+    public CuentaBancaria(Integer numero, Double saldoInicial) {
         this.numero = numero;
-        this.saldo = 0.0;
+        this.saldo = saldoInicial;
         this.observadores = new ArrayList<>();
     }
 
@@ -29,19 +29,19 @@ public class CuentaBancaria {
         return saldo;
     }
 
+    public boolean getEstado() {
+        return bloqueada;
+    }
+
     public void habilitarDeshabilitar() {
-        if (bloqueada = true) {
-            this.bloqueada = false;
-        } else {
-            this.bloqueada = true;
-        }
+        this.bloqueada = !bloqueada;
     }
 
     public void depositar(Double monto) {
-        if (monto <= 0) {
+        if (monto <= 0.0) {
             throw new MontoInvalidoException("El monto debe que sea mayor a 0");
         }
-        if (bloqueada) {
+        if (bloqueada.equals(true)) {
             throw new CuentaBloqueadaException("La cuenta esta bloqueada");
         }
         this.saldo += monto;
@@ -49,13 +49,13 @@ public class CuentaBancaria {
     }
 
     public void retirar(Double monto) {
-        if (monto <= 0) {
+        if (monto <= 0.0) {
             throw new MontoInvalidoException("El monto debe que sea mayor a 0");
         }
         if (this.saldo - monto < Descubierto_Permitido) {
             throw new SaldoInsuficienteException("El el saldo del usuario debe ser mayor que el saldo");
         }
-        if (bloqueada) {
+        if (bloqueada.equals(true)) {
             throw new CuentaBloqueadaException("La cuenta esta bloqueada");
         }
         this.saldo -= monto;

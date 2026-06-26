@@ -146,8 +146,8 @@ public class CuentaTest {
 
         AdministradorDeOperaciones adm = new AdministradorDeOperaciones();
 
-        Operacion operacion1 = new OperacionRetiro(miCuenta, 5000.0);
-        Operacion operacion2 = new OperacionDeposito(miCuenta, 30000_000.0);
+        Operacion operacion1 = new OperacionRetiro(miCuenta, 500000.0);
+        Operacion operacion2 = new OperacionDeposito(miCuenta, 300000.0);
         Operacion operacion3 = new OperacionRetiro(miCuenta, 50000.0);
 
         adm.registrarEnLote(operacion1);

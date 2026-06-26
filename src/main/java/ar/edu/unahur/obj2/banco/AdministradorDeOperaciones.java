@@ -37,7 +37,6 @@ public class AdministradorDeOperaciones {
                         "Operacion fallida en lote" + e.getMessage());
             }
         }
-        System.out.print("Operacion fue un exito en lote");
         this.loteOperaciones.clear();
     }
 }
